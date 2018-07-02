@@ -4,27 +4,28 @@ require(
             
         console.log("yo, I'm alive!");
 
-        // first prompt
-        window.confirm("Ready to play?");
+        // First prompt
+        var prompt = window.confirm("Ready to play?");
 
+        // If user decides to play
+        if (prompt == true){
         // background music
-
         var startSound = new Audio("./sounds/guitar.wav");
 
-        startSound.loop - true;
+        startSound.loop = true;
 
-        // to implement background sound later on
+        // To implement background sound later on
         // startSound.play();
 
         var paper = new Raphael(document.getElementById("mySVGCanvas"));
 
-        // Find get paper dimensions
+        // Get paper dimensions
         var dimX = paper.canvas.clientWidth;
         var dimY = paper.canvas.clientHeight;
 
 
         //------------------------------------------
-        // Careate a rectangle with the same dimensions as the canvas and save it in the variable bg
+        // Create a rectangle with the same dimensions as the canvas and save it in the variable bg
         var bg = paper.rect(0, 0, dimX, dimY);
 
         // Set some background rectangle attributes
@@ -152,9 +153,43 @@ require(
         var fin = setTimeout(function(){
             var end = confirm("Your score is " + score + ". " + "Want to play again?");
             if (end == true){
+                // Reload game
                 location.reload()
-            } 
+            } else {
+                // Show ending screen
+                var endbg = paper.rect(0, 0, dimX, dimY);
+                endbg.attr({
+                    "stroke": "#000000",
+                    "stroke-width": 0,
+                    "fill" : "#FFFFFF"                
+                });
+                var end = "You may now close the window!";
+                var endtext = paper.text(dimX/2, dimY/2, end).attr({
+                    "font-size": 60,
+                    "font-family": "Courier New",
+                });
+            }
 
         }, 21000);
 
-       });  
+        } else {
+            var paper = new Raphael(document.getElementById("mySVGCanvas"));
+            // Get paper dimensions
+            var dimX = paper.canvas.clientWidth;
+            var dimY = paper.canvas.clientHeight;
+
+            // Show ending screen
+            var endbg = paper.rect(0, 0, dimX, dimY);
+            endbg.attr({
+                "stroke": "#000000",
+                "stroke-width": 0,
+                "fill" : "#FFFFFF"                
+            });
+            var end = "You may now close the window!";
+            var endtext = paper.text(dimX/2, dimY/2, end).attr({
+                "font-size": 60,
+                "font-family": "Courier New",
+            });
+        }
+
+        });  
