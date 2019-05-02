@@ -1,12 +1,15 @@
 html, body
 {
-	background-color: grey;
+	background-color: white;
 	height: 98%;
 	width: 98%;
 }
 
+p {
+	text-align: center;
+}
 
-h3 {color: white;
+h3 {color: black;
 	height: 15%;
 	user-select: none;
 	text-align: center;
